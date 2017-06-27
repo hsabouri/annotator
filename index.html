@@ -5,16 +5,16 @@
 	<meta charset="utf-8" />
 </head>
 <body>
-	<input type="file" onchange="images.save_file_list(event)" accept="*png,*bmp" multiple></input>
+	<input id="input_files" type="file" accept="*png,*bmp" multiple></input>
 	<script type="text/javascript" src="js/FileSaver.js"></script>
 	<script type="text/javascript" src="js/json.js"></script>
-	<script type="text/javascript" src="js/load_images.js">
-	</script>
+	<script type="text/javascript" src="js/load_images.js"></script>
 	<script type="text/javascript">
-		
 		var images = new Images();
+		var input_files = document.getElementById("input_files");
 
-		console.log(images);
+		input_files.onchange = images.save_file_list;
+
 	</script>
 </body>
 </html>
