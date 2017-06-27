@@ -2,12 +2,19 @@
 <html>
 <head>
 	<title>Annotator</title>
-	<meta charset="utf-8">
+	<meta charset="utf-8" />
 </head>
 <body>
-	<img>
-	<script type="text/javascript" src="js/annotator.js">	
+	<input type="file" onchange="images.save_file_list(event)" accept="*png,*bmp" multiple></input>
+	<script type="text/javascript" src="js/FileSaver.js"></script>
+	<script type="text/javascript" src="js/json.js"></script>
+	<script type="text/javascript" src="js/load_images.js">
+	</script>
+	<script type="text/javascript">
 		
+		var images = new Images();
+
+		console.log(images);
 	</script>
 </body>
 </html>
