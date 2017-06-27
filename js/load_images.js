@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   load_images.js                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hsabouri <hsabouri@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/06/28 00:18:01 by hsabouri          #+#    #+#             */
+/*   Updated: 2017/06/28 01:16:59 by hsabouri         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 var Image_des = function() {
 	this.is_loaded = false;
 	this.file_descriptor = null;
@@ -6,6 +18,8 @@ var Image_des = function() {
 	this.width = null;
 	this.height = null;
 	this.points = [];
+	this.scale = null;
+	this.element = null;
 }
 
 var Images = function () {
@@ -14,14 +28,36 @@ var Images = function () {
 	var _images = [];
 	var _is_image_loaded = false;
 
-	var _load = function(image_id) {
+	var _unload = function(image_id) {
+		_images[_current_img].scale = null;
+		_images[_current_img].element = null;
+		_images[_current_img].is_loaded = false;
+	}
+
+	var _load = function(image_id, callback) {
 		var file_reader = new FileReader();
 
 		file_reader.onload = function() {
 			var img = new Image();
 
 			img.src = file_reader.result;
-			document.body.appendChild(img);
+
+			_images[image_id].element = img;
+			_images[image_id].width = img.width;
+			_images[image_id].height = img.height;
+
+			_images[image_id].scale = window.innerHeight / img.height;
+
+			if (window.innerWidth < img.width * _images[image_id].scale) {
+				_images[image_id].scale = window.innerWidth / img.width;
+			}
+
+			_images[image_id].is_loaded = true;
+
+			_unload(_current_img);
+			_current_img = image_id;
+
+			callback(_images[image_id]);
 		};
 
 		file_reader.readAsDataURL(_images[image_id].file_descriptor);
@@ -40,7 +76,6 @@ var Images = function () {
 		}
 
 		_is_image_loaded = true;
-		_load(0);
 	};
 
 	this.get_current_img = function() {

@@ -1,3 +1,13 @@
+<!--
+                                                          :::      ::::::::
+     index.html                                         :+:      :+:    :+:
+                                                      +:+ +:+         +:+
+     By: hsabouri <hsabouri@student.42.fr>          +#+  +:+       +#+
+                                                  +#+#+#+#+#+   +#+
+     Created: 2017/06/28 00:19:55 by hsabouri          #+#    #+#
+     Updated: 2017/06/28 00:53:59 by hsabouri         ###   ########.fr
+-->
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,16 +15,25 @@
 	<meta charset="utf-8" />
 </head>
 <body>
+	<canvas id="canvas"></canvas>
 	<input id="input_files" type="file" accept="*png,*bmp" multiple></input>
 	<script type="text/javascript" src="js/FileSaver.js"></script>
 	<script type="text/javascript" src="js/json.js"></script>
 	<script type="text/javascript" src="js/load_images.js"></script>
+	<script type="text/javascript" src="js/canvas.js"></script>
 	<script type="text/javascript">
 		var images = new Images();
 		var input_files = document.getElementById("input_files");
+		var canvas_element = document.getElementById("canvas");
+		var renderer = new Renderer(canvas_element);
 
-		input_files.onchange = images.save_file_list;
-
+		input_files.onchange = function (event) {
+			images.save_file_list(event);
+			images.load(1, function(image) {
+				renderer.set_canvas_properties({width: image.width * image.scale, height: image.height * image.scale});
+				renderer.display_image(image);
+			});
+		};
 	</script>
 </body>
 </html>
