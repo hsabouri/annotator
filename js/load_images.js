@@ -6,7 +6,7 @@
 /*   By: hsabouri <hsabouri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/28 00:18:01 by hsabouri          #+#    #+#             */
-/*   Updated: 2017/06/28 02:26:37 by hsabouri         ###   ########.fr       */
+/*   Updated: 2017/06/28 03:21:35 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,12 @@ var Images = function () {
 	var _selected_files = [];
 	var _images = [];
 	var _is_image_loaded = false;
+	var _zoom_scale = 1.0;
+	var _coord = {
+		x: 0,
+		y: 0
+	}
+
 
 	var _unload = function(image_id) {
 		_images[_current_img].scale = null;
@@ -66,6 +72,24 @@ var Images = function () {
 	}
 	this.load = _load;
 
+	this.change_image = function(relative_index) {
+		if (_current_img + relative_index < 0) {
+			var id = _images.length + (_current_img + relative_index);
+			_load(id);
+			return;
+		}
+
+		if (_current_img + relative_index >= _images.length) {
+			var id = 0 + (_current_img + relative_index - _images.length);
+			_load(id);
+			return;
+		}
+
+		var id = _current_img + relative_index;
+		_load(id);
+		return;
+	};
+
 	this.save_file_list = function(event) {
 		_selected_files = event.target.files || window.event.srcElement.files;
 
@@ -79,6 +103,9 @@ var Images = function () {
 
 		_is_image_loaded = true;
 	};
+
+
+	//Getters/Setters
 
 	this.get_current_img = function() {
 		return (_current_img);
@@ -102,5 +129,23 @@ var Images = function () {
 
 	this.get_loaded_status = function() {
 		return (_is_image_loaded);
+	}
+
+	this.set_coord = function (value) {
+		coord = value;
+	}
+
+	this.get_coord = function () {
+		return (coord);
+	}
+
+	this.get_zoom_scale = function () {
+		return (_zoom_scale);
+	}
+
+	this.set_zoom_scale = function (value) {
+		if (value <= 0.1) {
+			_zoom_scale = value;
+		}
 	}
 };
