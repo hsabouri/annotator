@@ -11,7 +11,7 @@ function	print_cross(context, x, y, w)
 	context.stroke();
 }
 
-function	print_fancy_cross(context, x, y)
+function	print_fancy_cross(context, coord)
 {
 	var cross_size = 10;
 	var color = "black";
@@ -21,8 +21,8 @@ function	print_fancy_cross(context, x, y)
 	
 	context.lineWidth = border_width;
 	context.strokeStyle = border;
-	print_cross(context, x, y, cross_size);
+	print_cross(context, coord.x, coord.y, cross_size);
 	context.lineWidth = cross_width;
 	context.strokeStyle = color;
-	print_cross(context, x, y, cross_size);
+	print_cross(context, coord.x, coord.y, cross_size);
 }

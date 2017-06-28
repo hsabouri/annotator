@@ -15,7 +15,7 @@ function	parse_images(images)
 		var des = images_tab[i];
 		tab.push({file_name: des.file_name, regions: des.points });
 	}
-	return (tab);
+	return ({data: tab});
 }
 
 function	save_images(images, filename)

@@ -13,7 +13,9 @@ var Canvas_manager = function(element) {
 	var _set_canvas_properties = this.set_canvas_properties;
 
 	this.display_image = function(image) {
-		_ctx.drawImage(image.element, 0, 0, Math.round(image.width * image.scale), Math.round(image.height * image.scale));
+		_ctx.drawImage(image.element, 0, 0,
+			Math.round(image.width * image.scale),
+			Math.round(image.height * image.scale));
 	}
 	var _display_image = this.display_image;
 
@@ -23,28 +25,43 @@ var Canvas_manager = function(element) {
 
 	this.update_canvas = function(images)
 	{
-		if (images.get_loaded_status() && images.get_current_image_des() && images.get_current_image_des().is_loaded) {
+		if (images.get_loaded_status() && images.get_current_image_des() &&
+			images.get_current_image_des().is_loaded) {
 			_set_canvas_properties({
-				width: images.get_current_image_des().width * images.get_current_image_des().scale,
-				height: images.get_current_image_des().height * images.get_current_image_des().scale
+				width: images.get_current_image_des().width *
+					images.get_current_image_des().scale,
+				height: images.get_current_image_des().height *
+					images.get_current_image_des().scale
 			});
 			_display_image(images.get_current_image_des());
-			crosses = images.get_current_image_des().points;
+			points = images.get_current_image_des().points;
 			_ctx.beginPath();
-			for (var i = 0; i < crosses.length; ++i)
-			{
-				var cross = crosses[i];
-				print_fancy_cross(_ctx, cross.x, cross.y);
-			}
+			for (var i = 0; i < points.length; ++i)
+				print_fancy_cross(_ctx, image_to_canvas(points[i],
+				images.get_current_image_des()));
 			_ctx.closePath();
 			update_image_id_element(images.get_current_img(), images.get_images().length - 1);
 		}
 	}
 	var _update_canvas = this.update_canvas;
 
-	var _canvas_on_click = function(x, y, images) {
-		images.get_current_image_des().points.push({x: x, y: y});
+	var	_delete_point = function(coord, des)
+	{
+		for (var i = 0; i < des.points.length; ++i)
+		{
+			if (coord_close(coord, image_to_canvas(des.points[i], des)))
+			{
+				des.points.splice(i, 1);
+				return (true);
+			}
+		}
+		return (false);
+	}
+
+	var _canvas_on_click = function(coord, images) {
+		if (!_delete_point(coord, images.get_current_image_des()))
+			images.get_current_image_des().points.push(coord_round(
+				canvas_to_image(coord, images.get_current_image_des())));
 	}
 	this.canvas_on_click = _canvas_on_click;
-
 }

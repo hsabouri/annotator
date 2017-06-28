@@ -16,6 +16,19 @@ function canvas_to_image(coord, image) {
 	return (ret);
 }
 
+function	coord_close(coord1, coord2)
+{
+	var		close_min = 5;
+
+	return (Math.abs(coord1.x - coord2.x) <= close_min &&
+		Math.abs(coord1.y - coord2.y) <= close_min);
+}
+
+function	coord_round(coord)
+{
+	return ({x: Math.round(coord.x), y: Math.round(coord.y)});
+}
+
 function update_image_id_element(id, total) {
 	var image_id_element = document.getElementById("image_id");
 
@@ -47,7 +60,7 @@ function main()
 	}, 1000/60);
 
 	canvas_element.addEventListener('click', function (event) {
-		canvas_manager.canvas_on_click(event.pageX, event.pageY, images)
+		canvas_manager.canvas_on_click({x: event.pageX, y: event.pageY}, images)
 	}, false);
 
 	save_element.addEventListener('click', function (event) {
