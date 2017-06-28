@@ -10,3 +10,12 @@ input {
 button {
 	padding: 3px 3px 4px 3px;
 }
+
+#image_id {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	color: black;
+	background: white;
+	padding: 5px 5px 5px 5px;
+}

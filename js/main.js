@@ -6,7 +6,7 @@
 //   By: etrobert <etrobert@student.42.fr>          +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2017/06/28 01:35:11 by etrobert          #+#    #+#             //
-//   Updated: 2017/06/28 04:21:28 by etrobert         ###   ########.fr       //
+//   Updated: 2017/06/28 04:22:32 by etrobert         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -28,6 +28,7 @@ function canvas_to_image(coord, image) {
 	return (ret);
 }
 
+<<<<<<< HEAD
 function	coord_close(coord1, coord2)
 {
 	var		close_min = 5;
@@ -39,6 +40,12 @@ function	coord_close(coord1, coord2)
 function	coord_round(coord)
 {
 	return ({x: Math.round(coord.x), y: Math.round(coord.y)});
+}
+
+function update_image_id_element(id, total) {
+	var image_id_element = document.getElementById("image_id");
+
+	image_id_element.innerHTML = id + "/" + total;
 }
 
 function main()
