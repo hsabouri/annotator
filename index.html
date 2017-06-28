@@ -5,7 +5,7 @@
      By: hsabouri <hsabouri@student.42.fr>          +#+  +:+       +#+
                                                   +#+#+#+#+#+   +#+
      Created: 2017/06/28 00:19:55 by hsabouri          #+#    #+#
-     Updated: 2017/06/28 03:24:04 by hsabouri         ###   ########.fr
+     Updated: 2017/06/28 03:47:36 by hsabouri         ###   ########.fr
 -->
 
 <!DOCTYPE html>
@@ -13,7 +13,7 @@
 <head>
 	<title>Annotator</title>
 	<meta charset="utf-8" />
-	<style type="text/css" href=""></style>
+	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<script type="text/javascript" src="js/FileSaver.js" async></script>
 	<script type="text/javascript" src="js/json.js" async></script>
 	<script type="text/javascript" src="js/load_images.js" async></script>
@@ -23,6 +23,8 @@
 </head>
 <body>
 	<canvas id="canvas"></canvas>
-	<input id="input_files" type="file" accept="*png,*bmp" multiple></input>
+	<input id="input_files" type="file" accept="*png,*bmp" multiple></input><br>
+	<input id="filename" type="text" placeholder="Filename"></input>
+	<button id="save_json">SAVE TO JSON</button>
 </body>
 </html>
