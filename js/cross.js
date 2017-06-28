@@ -10,7 +10,7 @@
 //                                                                            //
 // ************************************************************************** //
 
-function print_line(context, x1, y1, x2, y2)
+function	print_line(context, x1, y1, x2, y2)
 {
 	context.moveTo(x1 + 0.5, y1 + 0.5);
 	context.lineTo(x2 + 0.5, y2 + 0.5);
@@ -23,7 +23,7 @@ function	print_cross(context, x, y, w)
 	context.stroke();
 }
 
-function print_fancy_cross(context, x, y)
+function	print_fancy_cross(context, x, y)
 {
 	var cross_size = 10;
 	var color = "black";

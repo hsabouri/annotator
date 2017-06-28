@@ -6,7 +6,7 @@
 /*   By: hsabouri <hsabouri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/28 00:18:01 by hsabouri          #+#    #+#             */
-/*   Updated: 2017/06/28 01:57:22 by hsabouri         ###   ########.fr       */
+/*   Updated: 2017/06/28 02:26:37 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,27 +42,23 @@ var Images = function () {
 			img.src = file_reader.result;
 
 			img.onload = function() {
-				console.log(img);
 				_images[image_id].element = img;
 				_images[image_id].width = img.width;
 				_images[image_id].height = img.height;
 	
 				_images[image_id].scale = window.innerHeight / img.height;
-				console.log(window.innerWidth);
-				console.log(window.innerHeight);
-				console.log(img.width);
-				console.log(img.height);
 	
 				if (window.innerWidth < img.width * _images[image_id].scale) {
 					_images[image_id].scale = window.innerWidth / img.width;
 				}
 	
-				_images[image_id].is_loaded = true;
-	
 				_unload(_current_img);
 				_current_img = image_id;
-	
-				callback(_images[image_id]);
+				_images[image_id].is_loaded = true;
+
+				if (callback) {
+					callback(_images[image_id]);					
+				}
 			}
 		};
 
@@ -103,4 +99,8 @@ var Images = function () {
 	this.get_images = function() {
 		return (_images);
 	};
+
+	this.get_loaded_status = function() {
+		return (_is_image_loaded);
+	}
 };
