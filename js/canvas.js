@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   canvas.js                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: hsabouri <hsabouri@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/28 00:19:23 by hsabouri          #+#    #+#             */
-/*   Updated: 2017/06/28 03:41:42 by hsabouri         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 var Canvas_manager = function(element) {
 	var _canvas_element = element;
 	var _ctx = _canvas_element.getContext("2d");
@@ -49,6 +37,7 @@ var Canvas_manager = function(element) {
 				print_fancy_cross(_ctx, cross.x, cross.y);
 			}
 			_ctx.closePath();
+			update_image_id_element(images.get_current_img(), images.get_images().length - 1);
 		}
 	}
 	var _update_canvas = this.update_canvas;
