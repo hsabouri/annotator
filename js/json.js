@@ -6,7 +6,7 @@
 //   By: etrobert <etrobert@student.42.fr>          +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2017/06/28 00:16:34 by etrobert          #+#    #+#             //
-//   Updated: 2017/06/28 03:14:50 by etrobert         ###   ########.fr       //
+//   Updated: 2017/06/28 04:14:30 by etrobert         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -27,7 +27,7 @@ function	parse_images(images)
 		var des = images_tab[i];
 		tab.push({file_name: des.file_name, regions: des.points });
 	}
-	return (tab);
+	return ({data: tab});
 }
 
 function	save_images(images, filename)

@@ -6,7 +6,7 @@
 //   By: etrobert <etrobert@student.42.fr>          +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2017/06/28 01:35:11 by etrobert          #+#    #+#             //
-//   Updated: 2017/06/28 03:45:29 by etrobert         ###   ########.fr       //
+//   Updated: 2017/06/28 04:21:28 by etrobert         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -32,9 +32,13 @@ function	coord_close(coord1, coord2)
 {
 	var		close_min = 5;
 
-	console.log(coord1.x - coord2.x);
 	return (Math.abs(coord1.x - coord2.x) <= close_min &&
 		Math.abs(coord1.y - coord2.y) <= close_min);
+}
+
+function	coord_round(coord)
+{
+	return ({x: Math.round(coord.x), y: Math.round(coord.y)});
 }
 
 function main()

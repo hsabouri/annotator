@@ -37,7 +37,8 @@ var Canvas_manager = function(element) {
 
 	this.update_canvas = function(images)
 	{
-		if (images.get_loaded_status() && images.get_current_image_des() && images.get_current_image_des().is_loaded) {
+		if (images.get_loaded_status() && images.get_current_image_des() &&
+			images.get_current_image_des().is_loaded) {
 			_set_canvas_properties({
 				width: images.get_current_image_des().width *
 					images.get_current_image_des().scale,
@@ -70,8 +71,8 @@ var Canvas_manager = function(element) {
 
 	var _canvas_on_click = function(coord, images) {
 		if (!_delete_point(coord, images.get_current_image_des()))
-			images.get_current_image_des().points.push(canvas_to_image(coord,
-				images.get_current_image_des()));
+			images.get_current_image_des().points.push(coord_round(
+				canvas_to_image(coord, images.get_current_image_des())));
 	}
 	this.canvas_on_click = _canvas_on_click;
 }
