@@ -28,6 +28,12 @@ function canvas_to_image(coord, image) {
 	return (ret);
 }
 
+function update_image_id_element(id, total) {
+	var image_id_element = document.getElementById("image_id");
+
+	image_id_element.innerHTML = id + "/" + total;
+}
+
 function main()
 {	
 	var input_files = document.getElementById("input_files");

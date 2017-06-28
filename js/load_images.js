@@ -6,7 +6,7 @@
 /*   By: hsabouri <hsabouri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/28 00:18:01 by hsabouri          #+#    #+#             */
-/*   Updated: 2017/06/28 03:37:45 by hsabouri         ###   ########.fr       */
+/*   Updated: 2017/06/28 04:17:29 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,17 +77,20 @@ var Images = function () {
 		if (_current_img + relative_index < 0) {
 			var id = _images.length + (_current_img + relative_index);
 			_load(id);
+			update_image_id_element(id, _images.length - 1);
 			return;
 		}
 
 		if (_current_img + relative_index >= _images.length) {
 			var id = 0 + (_current_img + relative_index - _images.length);
 			_load(id);
+			update_image_id_element(id, _images.length - 1);
 			return;
 		}
 
 		var id = _current_img + relative_index;
 		_load(id);
+		update_image_id_element(id, _images.length - 1);
 		return;
 	};
 
