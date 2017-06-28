@@ -39,10 +39,7 @@ var Canvas_manager = function(element) {
 			crosses = images.get_current_image_des().points;
 			_ctx.beginPath();
 			for (var i = 0; i < crosses.length; ++i)
-			{
-				var cross = crosses[i];
-				print_fancy_cross(_ctx, cross.x, cross.y);
-			}
+				print_fancy_cross(_ctx, crosses[i]);
 			_ctx.closePath();
 		}
 	}
