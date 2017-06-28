@@ -6,7 +6,7 @@
 /*   By: hsabouri <hsabouri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/28 00:18:01 by hsabouri          #+#    #+#             */
-/*   Updated: 2017/06/28 03:21:35 by hsabouri         ###   ########.fr       */
+/*   Updated: 2017/06/28 03:37:45 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ var Image_des = function() {
 }
 
 var Images = function () {
-	var _current_img = 0;
+	var _current_img = null;
 	var _selected_files = [];
 	var _images = [];
 	var _is_image_loaded = false;
@@ -57,13 +57,14 @@ var Images = function () {
 				if (window.innerWidth < img.width * _images[image_id].scale) {
 					_images[image_id].scale = window.innerWidth / img.width;
 				}
-	
-				_unload(_current_img);
+				if (_current_img != null) {
+					_unload(_current_img);
+				}
 				_current_img = image_id;
 				_images[image_id].is_loaded = true;
 
 				if (callback) {
-					callback(_images[image_id]);					
+					callback(_images[image_id]);
 				}
 			}
 		};
@@ -90,7 +91,7 @@ var Images = function () {
 		return;
 	};
 
-	this.save_file_list = function(event) {
+	this.save_file_list = function(event, callback) {
 		_selected_files = event.target.files || window.event.srcElement.files;
 
 		console.log(_selected_files);

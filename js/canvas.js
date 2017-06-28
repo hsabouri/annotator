@@ -6,7 +6,7 @@
 /*   By: hsabouri <hsabouri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/28 00:19:23 by hsabouri          #+#    #+#             */
-/*   Updated: 2017/06/28 03:10:59 by hsabouri         ###   ########.fr       */
+/*   Updated: 2017/06/28 03:41:42 by hsabouri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ var Canvas_manager = function(element) {
 
 	this.update_canvas = function(images)
 	{
-		if (images.get_loaded_status()) {
+		if (images.get_loaded_status() && images.get_current_image_des() && images.get_current_image_des().is_loaded) {
 			_set_canvas_properties({
 				width: images.get_current_image_des().width *
 					images.get_current_image_des().scale,
