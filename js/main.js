@@ -6,7 +6,7 @@
 //   By: etrobert <etrobert@student.42.fr>          +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2017/06/28 01:35:11 by etrobert          #+#    #+#             //
-//   Updated: 2017/06/28 01:59:17 by etrobert         ###   ########.fr       //
+//   Updated: 2017/06/28 03:45:29 by etrobert         ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -26,6 +26,15 @@ function canvas_to_image(coord, image) {
 	ret.y = coord.y / image.scale;
 
 	return (ret);
+}
+
+function	coord_close(coord1, coord2)
+{
+	var		close_min = 5;
+
+	console.log(coord1.x - coord2.x);
+	return (Math.abs(coord1.x - coord2.x) <= close_min &&
+		Math.abs(coord1.y - coord2.y) <= close_min);
 }
 
 function main()
@@ -50,7 +59,7 @@ function main()
 	}, 1000/60);
 
 	canvas_element.addEventListener('click', function (event) {
-		canvas_manager.canvas_on_click(event.pageX, event.pageY, images)
+		canvas_manager.canvas_on_click({x: event.pageX, y: event.pageY}, images)
 	}, false);
 
 	document.addEventListener('keydown', function(event) {
